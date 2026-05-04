@@ -12,17 +12,25 @@ Demais diretrizes constam no Moodle.
  
  (Apague esses comentários)
 
-# Nome do Projeto
+# EcoGame
 
 **Código da Disciplina**: FGA0208<br>
-**Número do Grupo**: XX<br>
+**Número do Grupo**: 01<br>
 **Entrega**: 03<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 22/1022480 |	Carlos Henrique de Paiva Munis |
+| 21/1062910 |	Daniel Nunes Duarte
+| 23/1038072 |	Gabriel Dantas Bevilaqua Mendes
+| 22/2024837 |	Guilherme Costa Zanella
+| 23/2002996 |	Heyttor augusto de assis silva
+| 23/2003661 |	João Pedro Araújo de Freitas Lyra
+| 22/1008211 |	José Felipe Duarte Guedes de Oliveira
+| 19/0018101 |	Matheus Henrick Dutra dos Santos
+| 22/1008436 |	Ryan Augusto Brandão Salles
+| 23/2014271 |	Yasmin Sousa Abdon
 
 ## Sobre 
 Contextualize, usando referências, links, e outros materiais como fontes.
@@ -34,7 +42,7 @@ Adicione 2 ou mais screenshots em termos de artefatos realizados na entrega.
 
 ( ) SIM
 
-( ) NÃO
+(X) NÃO
 
 Se SIM, insira um manual (ou um script) para auxiliar ainda mais os interessados na execução.
 
