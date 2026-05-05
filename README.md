@@ -1,4 +1,4 @@
-# Repositorio EcoGama- entrega 2
+# Repositorio EcoGama- entrega 3
 
 Este repositório contem a segunda entrega do grupo 1, contendo diagramas estáticos, dinámicos e organizacionais da matéria de arquitetura de software da professora Milene Serrano.
 
@@ -20,12 +20,6 @@ Todos os alunos tiveram participações na construção de todos os focos desse 
       <a href="https://github.com/gbevi">
         <img style="border-radius: 50%;" src="https://github.com/gbevi.png" width="150px" alt="Gabriel Dantas Bevilaqua Mendes"/><br />
         <sub><b>Gabriel Dantas Bevilaqua Mendes</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/guilhermezan42">
-        <img style="border-radius: 50%;" src="https://github.com/guilhermezan42.png" width="150px" alt="Guilherme Costa Zanella"/><br />
-        <sub><b>Guilherme Costa Zanella</b></sub>
       </a>
     </td>
     <td align="center">
