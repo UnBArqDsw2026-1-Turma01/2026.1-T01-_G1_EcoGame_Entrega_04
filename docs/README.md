@@ -24,7 +24,6 @@ Demais diretrizes constam no Moodle.
 | 22/1022480 |	Carlos Henrique de Paiva Munis |
 | 21/1062910 |	Daniel Nunes Duarte
 | 23/1038072 |	Gabriel Dantas Bevilaqua Mendes
-| 22/2024837 |	Guilherme Costa Zanella
 | 23/2002996 |	Heyttor augusto de assis silva
 | 23/2003661 |	João Pedro Araújo de Freitas Lyra
 | 22/1008211 |	José Felipe Duarte Guedes de Oliveira
