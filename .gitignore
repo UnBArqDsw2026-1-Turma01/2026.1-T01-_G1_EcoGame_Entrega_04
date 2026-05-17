@@ -1,0 +1,15 @@
+# Godot-specific ignores
+.godot/
+*.import
+export_preset.cfg
+
+# C# / .NET ignores
+bin/
+obj/
+*.csproj.user
+.vs/
+.vscode/
+
+# OS-specific ignores
+.DS_Store
+Thumbs.db
