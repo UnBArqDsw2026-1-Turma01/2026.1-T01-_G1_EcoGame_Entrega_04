@@ -3,6 +3,12 @@ using Godot;
 
 namespace EcoGame;
 
+// Mapa atua como Subject no padrão GoF Observer.
+// Quando o dia avança (AvancarDia -> nascer do sol), notifica todos os
+// itens coletáveis registrados para que ativem o brilho. O padrão desacopla
+// o Mapa dos tipos concretos de item: ele conhece apenas a interface
+// ISunObserver, então qualquer entidade pode reagir ao ciclo dia/noite
+// sem que o Mapa precise saber dela.
 public partial class Mapa : Node
 {
     private readonly List<ISunObserver> _observadores = new List<ISunObserver>();
