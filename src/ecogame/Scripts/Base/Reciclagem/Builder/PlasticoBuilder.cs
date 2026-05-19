@@ -5,39 +5,26 @@ namespace EcoGame;
 
 public class PlasticoBuilder : ReceitaBuilder
 {
-    private List<Item> _itensNoBalde = new List<Item>();
+    private List<Item> _ingredientes = new List<Item>();
+    private const int PLASTICO_NECESSARIO = 3;
 
-    public bool EhCompativel(Item i)
-    {
-        return i is Lixo && i.GetMaterial() == MaterialBase.PLASTICO;
-    }
+    public bool EhCompativel(Item i) => i is Lixo && i.GetMaterial() == MaterialBase.PLASTICO;
 
     public void AdicionarIngrediente(Item i)
     {
-        if (EhCompativel(i)) _itensNoBalde.Add(i);
+        if (EhCompativel(i)) _ingredientes.Add(i);
     }
 
-    public bool ValidarIngredientes()
-    {
-        // soma a quantidades de todos os itens no balde
-        int totalPlastico = 0;
-        foreach (var item in _itensNoBalde)
-        {
-            totalPlastico += item.GetQuantidade();
-        }
-        
-        return totalPlastico >= 3; // Precisa de 3 unidades de plástico no total 
-    }
+    public bool ValidarIngredientes() => _ingredientes.Sum(item => item.GetQuantidade()) >= PLASTICO_NECESSARIO;
 
     public Item Construir()
     {
         if (!ValidarIngredientes()) return null;
 
-        _itensNoBalde.Clear();
-        //pontos da receita de criar bloco de plástico
-        
-         int pontosDeReceita = 15;
-        // Retorna um novo Reciclado
-        return new Reciclado("Bloco de Plástico", 1, MaterialBase.PLASTICO, pontosDeReceita);
+        var resultado = new Reciclado("Bloco de Plastico", 1, MaterialBase.PLASTICO, 15);
+        Reset();
+        return resultado;
     }
+
+    public void Reset() => _ingredientes.Clear();
 }

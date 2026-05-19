@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace EcoGame;
-public class EnxadaBuilder : ReceitaBuilder
+public class BaldeBuilder : ReceitaBuilder
 {
     private List<Item> _ingredientes = new List<Item>();
 
     public bool EhCompativel(Item i)
     {
-        // Aceita se for Reciclado E for ou Metal ou Organico
-        return i is Reciclado && (i.GetMaterial() == MaterialBase.METAL || i.GetMaterial() == MaterialBase.ORGANICO); //ORGANICO VAI SER MADEIRA FUTURAMENTE
+        // Aceita se for Reciclado E for ou Metal ou Plastico
+        return i is Reciclado && (i.GetMaterial() == MaterialBase.METAL || i.GetMaterial() == MaterialBase.PLASTICO); 
     }
 
     public void AdicionarIngrediente(Item i)
@@ -21,17 +21,17 @@ public class EnxadaBuilder : ReceitaBuilder
     {
         // Filtra e soma quanto temos de cada ingrediente
         int totalMetal = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.METAL).Sum(i => i.GetQuantidade());
-        int totalOrganico = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.ORGANICO).Sum(i => i.GetQuantidade());
+        int totalPlastico = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.PLASTICO).Sum(i => i.GetQuantidade());
 
-        // A receita: 2 Metais E 1 Organico
-        return totalMetal >= 1 && totalOrganico >= 1;
+        // A receita: 2 Metais E 2 Plastico
+        return totalMetal >= 2 && totalPlastico >= 1;
     }
 
     public Item Construir()
     {
         if (!ValidarIngredientes()) return null;
 
-        var resultado = new Ferramenta("Enxada", 1, MaterialBase.METAL, 30);
+        var resultado = new Ferramenta("Balde", 1, MaterialBase.METAL, 60);
         Reset();
         return resultado;
     }

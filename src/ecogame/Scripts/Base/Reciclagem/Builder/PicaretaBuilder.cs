@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace EcoGame;
-public class EnxadaBuilder : ReceitaBuilder
+public class PicaretaBuilder : ReceitaBuilder
 {
     private List<Item> _ingredientes = new List<Item>();
 
@@ -23,15 +23,15 @@ public class EnxadaBuilder : ReceitaBuilder
         int totalMetal = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.METAL).Sum(i => i.GetQuantidade());
         int totalOrganico = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.ORGANICO).Sum(i => i.GetQuantidade());
 
-        // A receita: 2 Metais E 1 Organico
-        return totalMetal >= 1 && totalOrganico >= 1;
+        // A receita: 2 Metais E 2 Organicos
+        return totalMetal >= 2 && totalOrganico >= 1;
     }
 
     public Item Construir()
     {
         if (!ValidarIngredientes()) return null;
 
-        var resultado = new Ferramenta("Enxada", 1, MaterialBase.METAL, 30);
+        var resultado = new Ferramenta("Picareta", 1, MaterialBase.METAL, 60);
         Reset();
         return resultado;
     }

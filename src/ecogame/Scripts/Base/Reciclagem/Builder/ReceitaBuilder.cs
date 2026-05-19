@@ -6,4 +6,5 @@ public interface ReceitaBuilder
     void AdicionarIngrediente(Item i);
     bool ValidarIngredientes();
     Item Construir();
+    void Reset();
 }

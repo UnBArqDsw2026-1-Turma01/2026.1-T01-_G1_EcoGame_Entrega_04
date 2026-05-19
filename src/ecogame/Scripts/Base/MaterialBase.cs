@@ -4,10 +4,9 @@ namespace EcoGame;
 public enum MaterialBase 
 {
     PLASTICO,
-	GARRAFA_PET_DE_AGUA,
+	GARRAFA_PET,
     METAL,
     VIDRO,
     ORGANICO,
-    FERRAMENTAS,
     OUTROS
 }

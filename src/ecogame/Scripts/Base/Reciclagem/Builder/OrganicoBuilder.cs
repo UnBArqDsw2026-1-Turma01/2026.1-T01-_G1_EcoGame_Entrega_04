@@ -5,38 +5,26 @@ namespace EcoGame;
 
 public class OrganicoBuilder : ReceitaBuilder
 {
-    private List<Item> _itensNoBalde = new List<Item>();
+    private List<Item> _ingredientes = new List<Item>();
+    private const int ORGANICO_NECESSARIO = 3;
 
-    public bool EhCompativel(Item i)
-    {
-        return i is Lixo && i.GetMaterial() == MaterialBase.ORGANICO;
-    }
+    public bool EhCompativel(Item i) => i is Lixo && i.GetMaterial() == MaterialBase.ORGANICO;
 
     public void AdicionarIngrediente(Item i)
     {
-        if (EhCompativel(i)) _itensNoBalde.Add(i);
+        if (EhCompativel(i)) _ingredientes.Add(i);
     }
 
-    public bool ValidarIngredientes()
-    {
-        // soma a quantidades de todos os itens no balde
-        int totalOrganico = 0;
-        foreach (var item in _itensNoBalde)
-        {
-            totalOrganico += item.GetQuantidade();
-        }
-        
-        return totalOrganico >= 3; // Precisa de 3 unidades de plástico no total 
-    }
+    public bool ValidarIngredientes() => _ingredientes.Sum(item => item.GetQuantidade()) >= ORGANICO_NECESSARIO;
 
     public Item Construir()
     {
         if (!ValidarIngredientes()) return null;
 
-        _itensNoBalde.Clear();
-        
-        int pontosDeReceita = 15;
-        // Retorna um novo Reciclado
-        return new Reciclado("Bloco de Adubo", 1, MaterialBase.ORGANICO, pontosDeReceita);
+        var resultado = new Reciclado("Bloco de Organico", 1, MaterialBase.ORGANICO, 15);
+        Reset();
+        return resultado;
     }
+
+    public void Reset() => _ingredientes.Clear();
 }

@@ -5,38 +5,26 @@ namespace EcoGame;
 
 public class MetalBuilder : ReceitaBuilder
 {
-    private List<Item> _itensNoBalde = new List<Item>();
+    private List<Item> _ingredientes = new List<Item>();
+    private const int METAL_NECESSARIO = 3;
 
-    public bool EhCompativel(Item i)
-    {
-        return i is Lixo && i.GetMaterial() == MaterialBase.METAL;
-    }
+    public bool EhCompativel(Item i) => i is Lixo && i.GetMaterial() == MaterialBase.METAL;
 
     public void AdicionarIngrediente(Item i)
     {
-        if (EhCompativel(i)) _itensNoBalde.Add(i);
+        if (EhCompativel(i)) _ingredientes.Add(i);
     }
 
-    public bool ValidarIngredientes()
-    {
-        // soma a quantidades de todos os itens no balde
-        int totalMetal = 0;
-        foreach (var item in _itensNoBalde)
-        {
-            totalMetal += item.GetQuantidade();
-        }
-        
-        return totalMetal >= 3; // Precisa de 3 unidades de plástico no total 
-    }
+    public bool ValidarIngredientes() => _ingredientes.Sum(item => item.GetQuantidade()) >= METAL_NECESSARIO;
 
     public Item Construir()
     {
         if (!ValidarIngredientes()) return null;
 
-        _itensNoBalde.Clear();
-
-         int pontosDeReceita = 15;
-        // Retorna um novo Reciclado
-        return new Reciclado("Bloco de Metal", 1, MaterialBase.METAL, pontosDeReceita);
+        var resultado = new Reciclado("Bloco de Metal", 1, MaterialBase.METAL, 15);
+        Reset();
+        return resultado;
     }
+
+    public void Reset() => _ingredientes.Clear();
 }
