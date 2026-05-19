@@ -9,7 +9,7 @@ public class BaldeBuilder : ReceitaBuilder
     public bool EhCompativel(Item i)
     {
         // Aceita se for Reciclado E for ou Metal ou Plastico
-        return i is Reciclado && (i.GetMaterial() == MaterialBase.METAL || i.GetMaterial() == MaterialBase.PLASTICO); 
+        return i is Reciclado && (i.GetMaterial() == MaterialBase.METAL || i.GetMaterial() == MaterialBase.GARRAFA_PET); 
     }
 
     public void AdicionarIngrediente(Item i)
@@ -21,7 +21,7 @@ public class BaldeBuilder : ReceitaBuilder
     {
         // Filtra e soma quanto temos de cada ingrediente
         int totalMetal = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.METAL).Sum(i => i.GetQuantidade());
-        int totalPlastico = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.PLASTICO).Sum(i => i.GetQuantidade());
+        int totalPlastico = _ingredientes.Where(i => i.GetMaterial() == MaterialBase.GARRAFA_PET).Sum(i => i.GetQuantidade());
 
         // A receita: 2 Metais E 2 Plastico
         return totalMetal >= 2 && totalPlastico >= 1;
