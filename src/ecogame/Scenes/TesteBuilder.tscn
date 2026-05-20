@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c6m5fuxegxrq2"]
+
+[ext_resource type="Script" uid="uid://h2e2odwmsqhg" path="res://Scripts/Testes/TesteBuilder.cs" id="1_17uvi"]
+
+[node name="TesteBuilder" type="Node2D" unique_id=1302062921]
+rotation = -5.076109
+script = ExtResource("1_17uvi")
