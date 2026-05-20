@@ -3,38 +3,38 @@ using System.Linq;
 
 namespace EcoGame;
 
-public class SlotInventario : ItemAgrupavel
+public class SlotInventario : Item
 {
-    private List<ItemAgrupavel> _itens = new List<ItemAgrupavel>();
+    private List<Item> _itens = new List<Item>();
     private int _limiteStack = 12;
     private int _indice;
 
-    public SlotInventario(int indice)
+    public SlotInventario(int indice) : base("Slot", 0, MaterialBase.OUTROS, 0)
     {
         _indice = indice;
     }
 
-    public string GetNome()
+    public override string GetNome()
     {
         return _itens.Count > 0 ? _itens[0].GetNome() : "Vazio";
     }
 
-    public MaterialBase GetMaterial()
+    public override MaterialBase GetMaterial()
     {
         return _itens.Count > 0 ? _itens[0].GetMaterial() : MaterialBase.OUTROS;
     }
 
-    public int GetPontos()
+    public override int GetPontos()
     {
         return _itens.Sum(item => item.GetPontos());
     }
 
-    public int GetQuantidade()
+    public override int GetQuantidade()
     {
         return _itens.Sum(item => item.GetQuantidade());
     }
 
-    public bool AdicionarItem(ItemAgrupavel item)
+    public bool AdicionarItem(Item item)
     {
         if (EstaLotado()) return false;
         if (_itens.Count > 0 && _itens[0].GetNome() != item.GetNome())
@@ -52,6 +52,6 @@ public class SlotInventario : ItemAgrupavel
 
     public bool EstaVazio() => _itens.Count == 0;
     public bool EstaLotado() => _itens.Count >= _limiteStack;
-    public List<ItemAgrupavel> GetItens() => new List<ItemAgrupavel>(_itens);
+    public List<Item> GetItens() => [.. _itens];
     public int GetIndice() => _indice;
 }

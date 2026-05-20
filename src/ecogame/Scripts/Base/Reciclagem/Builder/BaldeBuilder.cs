@@ -31,7 +31,7 @@ public class BaldeBuilder : ReceitaBuilder
     {
         if (!ValidarIngredientes()) return null;
 
-        var resultado = new Ferramenta("Balde", 1, MaterialBase.METAL, 60);
+        var resultado = new BaldeComposite("Balde", 1, MaterialBase.METAL, 60, 5); //balde sendo composite -> muda a instância do método
         Reset();
         return resultado;
     }

@@ -1,6 +1,6 @@
 namespace EcoGame;
 
-public partial class Item
+public abstract partial class Item //apos a implementacao do composite -> classe abstract
 {
     private string _nome;
 	private int _quantidade;
@@ -15,10 +15,11 @@ public partial class Item
         _pontos = pontos;
     }
 
-    public string GetNome() => _nome;
-	public int GetQuantidade() => _quantidade;
-    public MaterialBase GetMaterial() => _material;
-    public int GetPontos() => _pontos;
+//com virtual temos agora que os filhos com override sobreescrevem o valor do pai -> situação no baldeComposite**
+    public virtual string GetNome() => _nome;
+	public virtual int GetQuantidade() => _quantidade; 
+    public virtual MaterialBase GetMaterial() => _material;
+    public virtual int GetPontos() => _pontos; 
 
 
 }

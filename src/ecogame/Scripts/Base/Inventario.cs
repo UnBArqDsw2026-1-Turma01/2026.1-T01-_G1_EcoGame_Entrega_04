@@ -20,7 +20,7 @@ public class Inventario
         }
     }
 
-    public void AdicionarItem(ItemAgrupavel item)
+    public void AdicionarItem(Item item)
     {
         foreach (var slot in _slots)
         {
@@ -40,7 +40,7 @@ public class Inventario
         }
     }
 
-    public void RemoverItem(ItemAgrupavel item)
+    public void RemoverItem(Item item)
     {
         foreach (var slot in _slots)
         {
@@ -57,5 +57,5 @@ public class Inventario
         return _slots.Sum(slot => slot.GetPontos());
     }
 
-    public List<SlotInventario> GetSlots() => new List<SlotInventario>(_slots);
+    public List<SlotInventario> GetSlots() => [.. _slots];
 }
