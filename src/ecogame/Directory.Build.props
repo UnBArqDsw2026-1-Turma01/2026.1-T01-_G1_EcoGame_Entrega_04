@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <GodotSdkPath>C:\Users\jplyr\Desktop\Godot_v4.6.2-stable_mono_win64\GodotSharp\Sdk</GodotSdkPath>
+  </PropertyGroup>
+</Project>
