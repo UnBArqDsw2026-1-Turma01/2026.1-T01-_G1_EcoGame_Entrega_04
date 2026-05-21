@@ -19,7 +19,7 @@ public class PontuacaoRaridadeStrategy : PontuacaoStrategy
         }
         else if(item is Ferramenta)
         {
-            multiplicador = 0.1f;
+            multiplicador *= 0.1f; 
         }
         return (int)(item.GetPontos() * multiplicador);
     }
