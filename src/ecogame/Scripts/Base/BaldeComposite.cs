@@ -66,15 +66,15 @@ public override string GetNome()
     public int GetVolumeMax() => _volumeMax;
     public List<Item> GetItensInternos() => [.. _itens];
  
-public List<Item> ExtrairConteudo() 
-{
-    // Cria uma cópia dos itens para a máquina processar
-    List<Item> copia = [.. _itens]; 
+    public List<Item> ExtrairConteudo() 
+    {
+        // Cria uma cópia dos itens para a máquina processar
+        List<Item> copia = [.. _itens]; 
     
-    // Esvazia o balde depois que a máquina "pegou" os materiais
-    _itens.Clear(); 
+        // Esvazia o balde depois que a máquina "pegou" os materiais
+        _itens.Clear(); 
     
-    return copia;
-}
+        return copia;
+    }
 
 }

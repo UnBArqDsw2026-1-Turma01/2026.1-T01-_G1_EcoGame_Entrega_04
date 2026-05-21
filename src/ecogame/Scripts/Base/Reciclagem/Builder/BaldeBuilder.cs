@@ -31,10 +31,10 @@ public class BaldeBuilder : ReceitaBuilder
     {
         if (!ValidarIngredientes()) return null;
 
-        var resultado = new BaldeComposite("Balde", 1, MaterialBase.METAL, 60, 5); //balde sendo composite -> muda a instância do método
+        //instancio a classe Composite criando um novoBalde 
+        var novoBalde = new BaldeComposite("Balde de Ferro", 1, MaterialBase.METAL, 60, 5); //balde sendo composite -> muda a instância do método
         Reset();
-        return resultado;
+        return novoBalde;
     }
-
     public void Reset() => _ingredientes.Clear();
 }
