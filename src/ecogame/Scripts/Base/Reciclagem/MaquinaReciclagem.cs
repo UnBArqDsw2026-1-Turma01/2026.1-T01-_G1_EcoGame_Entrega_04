@@ -1,22 +1,26 @@
 using System.Collections.Generic;
 using Godot;
+
 namespace EcoGame;
 
-public partial class MaquinaReciclagem: Node
+public partial class MaquinaReciclagem : Node
 {
-	private List<ReceitaBuilder> _receitasDisponiveis = new List<ReceitaBuilder>();
-	public void AdicionarReceita(ReceitaBuilder novaReceita)
-	{
-		_receitasDisponiveis.Add(novaReceita);
-	}
+    private List<ReceitaBuilder> _receitasDisponiveis = new List<ReceitaBuilder>();
+    
+    // Injeção da Calculadora (Contexto do Strategy)
+    // A Máquina é o "Client" que usa a calculadora para pontuar os resultados
+    private CalculadoraPontuacao _calculadora = new CalculadoraPontuacao();
 
-	
-	//novo método
-	public void AlimentarMaquina(Item itemRecebido) 
+    public void AdicionarReceita(ReceitaBuilder novaReceita)
+    {
+        _receitasDisponiveis.Add(novaReceita);
+    }
+
+    public void AlimentarMaquina(Item itemRecebido) 
     {
         if (itemRecebido is BaldeComposite balde) 
         {
-            // Se for um balde, extraímos tudo o que está dentro
+            GD.Print("[Maquina] Balde detectado! Extraindo conteúdo...");
             List<Item> itensInternos = balde.ExtrairConteudo(); 
 
             foreach (var subItem in itensInternos) 
@@ -27,10 +31,10 @@ public partial class MaquinaReciclagem: Node
         } 
         else 
         {
-            // Se for um item avulso, vai direto
             DistribuirParaBuilders(itemRecebido);
         }
     }
+
     private void DistribuirParaBuilders(Item item)
     {
         foreach (var receita in _receitasDisponiveis)
@@ -38,19 +42,34 @@ public partial class MaquinaReciclagem: Node
             if (receita.EhCompativel(item))
             {
                 receita.AdicionarIngrediente(item);
-                GD.Print($"{item.GetNome()} adicionado à receita!");
+               GD.Print($"{item.GetNome()} adicionado à receita!");
             }
         }
     }
-		public Item ReciclarItem(ReceitaBuilder r)
-	{
-		if (r.ValidarIngredientes())
-		{
-			return r.Construir();
-		}
-		GD.Print("Puts! Você não tem ingredientes suficientes para a receita! :(");
-		return null;
 
-	}
+    public Item ReciclarItem(ReceitaBuilder r)
+    {
+        if (r.ValidarIngredientes())
+        {
+            // 1. O Builder constrói o novo item transformado
+            Item novoItem = r.Construir();
+            
+            // 2. O Strategy calcula a pontuação desse novo item
+            // Note: A Maquina não sabe qual regra (Base, Raridade ou Combo) está ativa.
+            // Ela apenas delega para o Contexto.
+            int pontosGanhos = _calculadora.CalcularEAcumular(novoItem);
 
+            GD.Print($"[SUCESSO] {novoItem.GetNome()} criado! +{pontosGanhos} pontos acumulados.");
+            GD.Print($"[PROGRESSÃO] Total: {_calculadora.GetPontosAcumulados()} | Estratégia: {_calculadora.GetEstrategiaAtiva()}");
+            
+            return novoItem;
+        }
+
+        GD.Print("Puts! Você não tem ingredientes suficientes para a receita! :(");
+        return null;
+    }
+
+    // Métodos para facilitar o acesso da UI aos dados da calculadora
+    public int GetTotalPontos() => _calculadora.GetPontosAcumulados();
+    public string GetNomeEstrategiaAtual() => _calculadora.GetEstrategiaAtiva();
 }
