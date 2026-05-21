@@ -12,6 +12,15 @@ public class PontuacaoRaridadeStrategy : PontuacaoStrategy
             MaterialBase.ORGANICO    => 0.75f,
             _                        => 1.0f
         };
+
+        if(item is BaldeComposite)
+        {
+            multiplicador += 0.5f;
+        }
+        else if(item is Ferramenta)
+        {
+            multiplicador = 0.1f;
+        }
         return (int)(item.GetPontos() * multiplicador);
     }
 
