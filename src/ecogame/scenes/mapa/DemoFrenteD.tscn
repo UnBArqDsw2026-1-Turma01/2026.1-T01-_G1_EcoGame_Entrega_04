@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://demo_frente_d_001"]
+
+[ext_resource type="Script" path="res://scenes/mapa/DemoFrenteD.cs" id="1_demofd"]
+
+[node name="DemoFrenteD" type="Node" unique_id=100000001]
+script = ExtResource("1_demofd")
